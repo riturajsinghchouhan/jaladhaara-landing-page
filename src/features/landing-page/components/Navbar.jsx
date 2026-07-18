@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Sun, Moon } from 'lucide-react'
 import Logo from '../../../components/ui/Logo'
 import Button from '../../../components/ui/Button'
 
@@ -16,6 +16,15 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('Home')
+  const [isLightMode, setIsLightMode] = useState(false)
+
+  useEffect(() => {
+    if (isLightMode) {
+      document.documentElement.setAttribute('data-theme', 'light')
+    } else {
+      document.documentElement.removeAttribute('data-theme')
+    }
+  }, [isLightMode])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -52,7 +61,7 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled || open
-          ? 'bg-[#040908]/80 backdrop-blur-xl border-b border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.1)]'
+          ? 'bg-[var(--color-bg)]/80 backdrop-blur-xl border-b border-[var(--color-border)] shadow-[0_4px_30px_rgba(0,0,0,0.1)]'
           : 'bg-transparent'
       }`}
     >
@@ -67,8 +76,8 @@ export default function Navbar() {
                 onClick={() => setActive(link.label)}
                 className={`relative text-sm font-semibold transition-colors py-1 ${
                   active === link.label
-                    ? 'text-white'
-                    : 'text-gray-400 hover:text-white'
+                    ? 'text-[var(--color-text-primary)]'
+                    : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
                 }`}
               >
                 {link.label}
@@ -80,23 +89,39 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden lg:block">
+        <div className="hidden lg:flex items-center gap-4">
+          <button
+            onClick={() => setIsLightMode(!isLightMode)}
+            className="p-2 rounded-full text-[var(--color-text-primary)] hover:bg-white/10 transition-colors"
+            aria-label="Toggle light mode"
+          >
+            {isLightMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+          </button>
           <Button href="#request">Request Borewell</Button>
         </div>
 
-        <button
-          type="button"
-          className="rounded-lg p-2 text-white lg:hidden hover:bg-white/5 transition-colors"
-          aria-label="Open menu"
-          onClick={() => setOpen(true)}
-        >
-          <Menu className="h-6 w-6" />
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <button
+            onClick={() => setIsLightMode(!isLightMode)}
+            className="p-2 rounded-lg text-[var(--color-text-primary)] hover:bg-white/5 transition-colors"
+            aria-label="Toggle light mode"
+          >
+            {isLightMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+          </button>
+          <button
+            type="button"
+            className="rounded-lg p-2 text-[var(--color-text-primary)] hover:bg-white/5 transition-colors"
+            aria-label="Open menu"
+            onClick={() => setOpen(true)}
+          >
+            <Menu className="h-6 w-6" />
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Drawer Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-[var(--color-overlay)] backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setOpen(false)}
@@ -104,15 +129,15 @@ export default function Navbar() {
 
       {/* Mobile Drawer Menu */}
       <div
-        className={`fixed top-0 right-0 z-50 h-screen w-[280px] sm:w-[320px] bg-[#040908] border-l border-white/5 shadow-2xl transform transition-transform duration-300 ease-in-out lg:hidden flex flex-col ${
+        className={`fixed top-0 right-0 z-50 h-screen w-[280px] sm:w-[320px] bg-[var(--color-bg)] border-l border-[var(--color-border)] shadow-2xl transform transition-transform duration-300 ease-in-out lg:hidden flex flex-col ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex items-center justify-between px-6 h-20 border-b border-white/5">
-          <span className="text-white font-bold text-lg">Menu</span>
+        <div className="flex items-center justify-between px-6 h-20 border-b border-[var(--color-border)]">
+          <span className="text-[var(--color-text-primary)] font-bold text-lg">Menu</span>
           <button
             type="button"
-            className="rounded-lg p-2 text-white hover:bg-white/10 transition-colors"
+            className="rounded-lg p-2 text-[var(--color-text-primary)] hover:bg-white/10 transition-colors"
             onClick={() => setOpen(false)}
           >
             <X className="h-6 w-6" />
@@ -132,7 +157,7 @@ export default function Navbar() {
                   className={`block rounded-xl px-4 py-3.5 text-base font-semibold transition-colors ${
                     active === link.label
                       ? 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
-                      : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                      : 'text-[var(--color-text-secondary)] hover:bg-white/5 hover:text-[var(--color-text-primary)]'
                   }`}
                 >
                   {link.label}
@@ -142,7 +167,7 @@ export default function Navbar() {
           </ul>
         </div>
         
-        <div className="p-6 border-t border-white/5 pb-8">
+        <div className="p-6 border-t border-[var(--color-border)] pb-8">
           <Button href="#request" className="w-full justify-center h-14 text-base" onClick={() => setOpen(false)}>
             Request Borewell
           </Button>

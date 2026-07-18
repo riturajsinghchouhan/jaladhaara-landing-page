@@ -37,7 +37,7 @@ const legalLinks = [
 function FooterColumn({ title, links }) {
   return (
     <div>
-      <h4 className="text-sm font-bold tracking-wide text-white uppercase">
+      <h4 className="text-sm font-bold tracking-wide text-[var(--color-text-primary)] uppercase">
         {title}
       </h4>
       <ul className="mt-4 space-y-2.5">
@@ -45,7 +45,7 @@ function FooterColumn({ title, links }) {
           <li key={link.label}>
             <a
               href={link.href}
-              className="text-sm text-white/65 transition hover:text-mint"
+              className="text-sm text-[var(--color-text-primary)]/65 transition hover:text-mint"
             >
               {link.label}
             </a>
@@ -71,7 +71,7 @@ export default function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(3,0.8fr)_auto]">
           <div className="max-w-xs">
             <Logo light />
-            <p className="mt-4 text-sm leading-relaxed text-white/65">
+            <p className="mt-4 text-sm leading-relaxed text-[var(--color-text-primary)]/65">
               Helping farmers and communities find reliable borewell points with
               technology, expertise, and care — so every drop reaches every
               field.
@@ -83,7 +83,7 @@ export default function Footer() {
           <FooterColumn title="Legal" links={legalLinks} />
 
           <div>
-            <h4 className="text-sm font-bold tracking-wide text-white uppercase">
+            <h4 className="text-sm font-bold tracking-wide text-[var(--color-text-primary)] uppercase">
               Follow Us
             </h4>
             <div className="mt-4 flex gap-3">
@@ -112,7 +112,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-6 text-center text-sm text-white/45">
+        <div className="mt-12 border-t border-[var(--color-border)] pt-6 text-center text-sm text-[var(--color-text-primary)]/45">
           © {new Date().getFullYear()} Jaladhaara Groundwater Pvt Ltd a start up company. All rights reserved.
         </div>
       </div>

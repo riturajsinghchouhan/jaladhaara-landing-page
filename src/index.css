@@ -8,15 +8,50 @@
   --color-primary-hover: #00B873;
   --color-secondary: #0B1220;
   --color-accent: #FFD54A;
-  --color-bg: #06161B;
-  --color-surface: #0E2428;
-  --color-light-section: #F8FAFC;
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #B6C2CF;
 }
 
-html {
-  scroll-behavior: smooth;
+:root {
+  /* DARK THEME (Default) */
+  --color-bg: #031312;
+  --color-surface: #0A1615;
+  --color-surface-light: #0E2428;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #9CA3AF;
+  --color-border: rgba(255, 255, 255, 0.05);
+  --color-border-hover: rgba(255, 255, 255, 0.2);
+  --color-overlay: rgba(0, 0, 0, 0.6);
+
+  --card-grad-1-from: #06161B;
+  --card-grad-1-to: #0A1615;
+  --card-grad-2-from: #121A2F;
+  --card-grad-2-to: #0B101D;
+  --card-grad-3-from: #1A1A1A;
+  --card-grad-3-to: #0A0A0A;
+
+  --hero-overlay: linear-gradient(to right, #031312 30%, transparent 70%);
+}
+
+html[data-theme="light"] {
+  /* LIGHT THEME - Professional Clean SaaS Aesthetic (Like Stripe / Linear) */
+  --color-bg: #FCFCFD; /* Ultra soft, clean neutral background */
+  --color-surface: #FFFFFF; /* Crisp pure white cards */
+  --color-surface-light: #F9FAFB; /* gray-50 for subtle depth */
+  --color-text-primary: #111827; /* gray-900 - High contrast, extremely readable text */
+  --color-text-secondary: #4B5563; /* gray-600 - Perfect muted text */
+  --color-border: rgba(0, 0, 0, 0.06); /* Very soft, elegant borders */
+  --color-border-hover: rgba(0, 0, 0, 0.15);
+  --color-overlay: rgba(252, 252, 253, 0.8);
+
+  /* Very subtle, premium light gradients for cards to give them a modern 3D pop without being colorful */
+  --card-grad-1-from: #FFFFFF;
+  --card-grad-1-to: #F4F4F5; /* zinc-100 */
+  --card-grad-2-from: #FFFFFF;
+  --card-grad-2-to: #F4F4F5;
+  --card-grad-3-from: #FFFFFF;
+  --card-grad-3-to: #F4F4F5;
+
+  /* PERFECT HERO FADE: Solid clean background for text, sharp fade, totally transparent truck */
+  --hero-overlay: linear-gradient(to right, #FCFCFD 45%, rgba(252, 252, 253, 0.85) 55%, transparent 75%);
 }
 
 body {
@@ -25,6 +60,7 @@ body {
   color: var(--color-text-primary);
   background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -94,7 +130,7 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(14, 36, 40, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 

@@ -9,17 +9,15 @@ export default function Logo({ light = false, compact = false }) {
       >
         <Droplets className="h-5 w-5" strokeWidth={2.2} />
       </span>
-      <span className="leading-tight">
+      <span className="leading-tight flex flex-col justify-center">
         <span
-          className={`block text-lg font-extrabold tracking-tight ${light ? 'text-white' : 'text-forest'
-            }`}
+          className="block text-lg font-extrabold tracking-tight text-[var(--color-text-primary)] truncate max-w-[200px] sm:max-w-none"
         >
-          Jaladhaara Groundwater Pvt Ltd a start up company
+          Jaladhaara <span className="hidden sm:inline">Groundwater Pvt Ltd a start up company</span>
         </span>
         {!compact && (
           <span
-            className={`block text-[11px] font-medium ${light ? 'text-white/70' : 'text-muted'
-              }`}
+            className="block text-[11px] font-medium text-[var(--color-text-secondary)]"
           >
             Har Boond, Har Khet
           </span>
