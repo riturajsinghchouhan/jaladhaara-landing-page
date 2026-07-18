@@ -86,17 +86,41 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="rounded-lg p-2 text-white lg:hidden"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          onClick={() => setOpen((v) => !v)}
+          className="rounded-lg p-2 text-white lg:hidden hover:bg-white/5 transition-colors"
+          aria-label="Open menu"
+          onClick={() => setOpen(true)}
         >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <Menu className="h-6 w-6" />
         </button>
       </nav>
 
-      {open && (
-        <div className="border-t border-white/5 bg-[#040908]/95 backdrop-blur-xl px-4 py-4 lg:hidden">
-          <ul className="flex flex-col gap-3">
+      {/* Mobile Drawer Overlay */}
+      <div
+        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+          open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setOpen(false)}
+      ></div>
+
+      {/* Mobile Drawer Menu */}
+      <div
+        className={`fixed top-0 right-0 z-50 h-screen w-[280px] sm:w-[320px] bg-[#040908] border-l border-white/5 shadow-2xl transform transition-transform duration-300 ease-in-out lg:hidden flex flex-col ${
+          open ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="flex items-center justify-between px-6 h-20 border-b border-white/5">
+          <span className="text-white font-bold text-lg">Menu</span>
+          <button
+            type="button"
+            className="rounded-lg p-2 text-white hover:bg-white/10 transition-colors"
+            onClick={() => setOpen(false)}
+          >
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="flex-1 overflow-y-auto px-4 py-6">
+          <ul className="flex flex-col gap-2">
             {links.map((link) => (
               <li key={link.label}>
                 <a
@@ -105,10 +129,10 @@ export default function Navbar() {
                     setActive(link.label)
                     setOpen(false)
                   }}
-                  className={`block rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${
+                  className={`block rounded-xl px-4 py-3.5 text-base font-semibold transition-colors ${
                     active === link.label
                       ? 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
-                      : 'text-gray-400 hover:bg-white/5 hover:text-white'
+                      : 'text-gray-300 hover:bg-white/5 hover:text-white'
                   }`}
                 >
                   {link.label}
@@ -116,11 +140,14 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <Button href="#request" className="mt-4 w-full" onClick={() => setOpen(false)}>
+        </div>
+        
+        <div className="p-6 border-t border-white/5 pb-8">
+          <Button href="#request" className="w-full justify-center h-14 text-base" onClick={() => setOpen(false)}>
             Request Borewell
           </Button>
         </div>
-      )}
+      </div>
     </header>
   )
 }
