@@ -54,13 +54,13 @@ export default function Solution() {
           {solutions.map(({ icon: Icon, title, text }) => (
             <article
               key={title}
-              className="rounded-2xl border border-white/10 bg-forest-soft/80 p-5 transition hover:border-mint/30 hover:bg-forest-soft sm:p-6"
+              className="rounded-2xl border border-white/10 bg-forest-soft/80 p-4 transition hover:border-mint/30 hover:bg-forest-soft sm:p-5"
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-mint/15 text-mint">
-                <Icon className="h-5 w-5" strokeWidth={1.8} />
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-mint/15 text-mint">
+                <Icon className="h-4 w-4" strokeWidth={1.8} />
               </span>
-              <h3 className="mt-4 text-lg font-bold text-white">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/65">{text}</p>
+              <h3 className="mt-3 text-base font-bold text-white">{title}</h3>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-white/65">{text}</p>
             </article>
           ))}
         </div>
