@@ -13,13 +13,13 @@ export default function Logo({ light = false, compact = false }) {
         <span
           className="block text-lg font-extrabold tracking-tight text-[var(--color-text-primary)] truncate max-w-[200px] sm:max-w-none"
         >
-          Jaladhaara <span className="hidden sm:inline">Groundwater Pvt Ltd a start up company</span>
+          Jaladhaara <span className="hidden sm:inline">Groundwater Survey Pvt Ltd</span>
         </span>
         {!compact && (
           <span
             className="block text-[11px] font-medium text-[var(--color-text-secondary)]"
           >
-            Har Boond, Har Khet
+            Exploring and protecting our groundwater
           </span>
         )}
       </span>

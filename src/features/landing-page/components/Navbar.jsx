@@ -92,7 +92,7 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-4">
           {/* <button
             onClick={() => setIsLightMode(!isLightMode)}
-            className="p-2 rounded-full text-[var(--color-text-primary)] hover:bg-white/10 transition-colors"
+            className="p-2 rounded-full text-[var(--color-text-primary)] hover:bg-black/10 transition-colors"
             aria-label="Toggle light mode"
           >
             {isLightMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
@@ -103,14 +103,14 @@ export default function Navbar() {
         <div className="flex items-center gap-2 lg:hidden">
           {/* <button
             onClick={() => setIsLightMode(!isLightMode)}
-            className="p-2 rounded-lg text-[var(--color-text-primary)] hover:bg-white/5 transition-colors"
+            className="p-2 rounded-lg text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
             aria-label="Toggle light mode"
           >
             {isLightMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
           </button> */}
           <button
             type="button"
-            className="rounded-lg p-2 text-[var(--color-text-primary)] hover:bg-white/5 transition-colors"
+            className="rounded-lg p-2 text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
             aria-label="Open menu"
             onClick={() => setOpen(true)}
           >
@@ -137,7 +137,7 @@ export default function Navbar() {
           <span className="text-[var(--color-text-primary)] font-bold text-lg">Menu</span>
           <button
             type="button"
-            className="rounded-lg p-2 text-[var(--color-text-primary)] hover:bg-white/10 transition-colors"
+            className="rounded-lg p-2 text-[var(--color-text-primary)] hover:bg-black/10 transition-colors"
             onClick={() => setOpen(false)}
           >
             <X className="h-6 w-6" />
@@ -157,7 +157,7 @@ export default function Navbar() {
                   className={`block rounded-xl px-4 py-3.5 text-base font-semibold transition-colors ${
                     active === link.label
                       ? 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
-                      : 'text-[var(--color-text-secondary)] hover:bg-white/5 hover:text-[var(--color-text-primary)]'
+                      : 'text-[var(--color-text-secondary)] hover:bg-black/5 hover:text-[var(--color-text-primary)]'
                   }`}
                 >
                   {link.label}
