@@ -213,60 +213,60 @@ function App() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 reveal">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5 reveal">
           {/* Bento Box 1: Large with Image */}
-          <div className="col-span-2 rounded-2xl sm:rounded-[32px] overflow-hidden border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all flex flex-col justify-end relative group min-h-[160px] sm:min-h-[360px]">
+          <div className="col-span-2 rounded-2xl sm:rounded-[28px] overflow-hidden border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all flex flex-col justify-end relative group min-h-[160px] sm:min-h-[280px]">
             <img src={bentoScan} alt="3D Ground Scanning" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)]/90 via-[var(--color-bg)]/50 to-transparent"></div>
             
-            <div className="relative z-10 p-5 sm:p-8 lg:p-12">
-              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-[var(--color-primary)]/20 flex items-center justify-center mb-3 sm:mb-6 border border-[var(--color-primary)]/30 backdrop-blur-sm">
-                <Crosshair className="w-5 h-5 sm:w-7 sm:h-7 text-[var(--color-primary)]" />
+            <div className="relative z-10 p-5 sm:p-6 lg:p-8">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[var(--color-primary)]/20 flex items-center justify-center mb-3 sm:mb-4 border border-[var(--color-primary)]/30 backdrop-blur-sm">
+                <Crosshair className="w-5 h-5 sm:w-6 sm:h-6 text-[var(--color-primary)]" />
               </div>
-              <h3 className="text-lg sm:text-2xl lg:text-3xl font-bold mb-1 sm:mb-3 text-[var(--color-text-primary)] leading-tight">Advanced 3D Ground Scanning</h3>
-              <p className="text-[var(--color-text-secondary)] text-xs sm:text-lg leading-relaxed max-w-md line-clamp-2 sm:line-clamp-none">We use military-grade geological scanners to map underground water veins with 98% accuracy before a single drop of diesel is burned.</p>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-1 sm:mb-2 text-[var(--color-text-primary)] leading-tight">Advanced 3D Ground Scanning</h3>
+              <p className="text-[var(--color-text-secondary)] text-xs sm:text-base leading-relaxed max-w-md line-clamp-2 sm:line-clamp-none">We use military-grade geological scanners to map underground water veins with 98% accuracy before a single drop of diesel is burned.</p>
             </div>
           </div>
 
           {/* Bento Box 2: Tall with Image */}
-          <div className="col-span-1 rounded-2xl sm:rounded-[32px] overflow-hidden border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all flex flex-col justify-end relative group min-h-[160px] sm:min-h-[360px]">
+          <div className="col-span-1 rounded-2xl sm:rounded-[28px] overflow-hidden border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all flex flex-col justify-end relative group min-h-[160px] sm:min-h-[280px]">
             <img src={bentoWater} alt="Water Success" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)]/95 via-[var(--color-bg)]/60 to-transparent"></div>
             
-            <div className="relative z-10 p-4 sm:p-8 lg:p-10">
-              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-white/10 flex items-center justify-center mb-3 sm:mb-6 border border-[var(--color-border-hover)] backdrop-blur-sm group-hover:scale-110 transition-transform">
-                <ShieldAlert className="w-4 h-4 sm:w-6 sm:h-6 text-[var(--color-text-primary)]" />
+            <div className="relative z-10 p-4 sm:p-6 lg:p-8">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white/10 flex items-center justify-center mb-3 sm:mb-4 border border-[var(--color-border-hover)] backdrop-blur-sm group-hover:scale-110 transition-transform">
+                <ShieldAlert className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--color-text-primary)]" />
               </div>
-              <h3 className="text-sm sm:text-xl font-bold mb-1 sm:mb-2 text-[var(--color-text-primary)] leading-tight">No Dry Runs</h3>
-              <p className="text-[var(--color-text-secondary)] leading-relaxed text-[10px] sm:text-sm line-clamp-2 sm:line-clamp-none">Our promise is simple: we find the water first, or you don't pay for empty holes.</p>
+              <h3 className="text-sm sm:text-lg font-bold mb-1 sm:mb-2 text-[var(--color-text-primary)] leading-tight">No Dry Runs</h3>
+              <p className="text-[var(--color-text-secondary)] leading-relaxed text-[10px] sm:text-xs line-clamp-2 sm:line-clamp-none">Our promise is simple: we find the water first, or you don't pay for empty holes.</p>
             </div>
           </div>
 
           {/* Bento Box 3: Small */}
-          <div className="col-span-1 bg-gradient-to-br from-[var(--card-grad-3-from)] to-[var(--card-grad-3-to)] rounded-2xl sm:rounded-[32px] p-4 sm:p-8 lg:p-10 border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all flex flex-col justify-between relative overflow-hidden group min-h-[160px] sm:min-h-[auto]">
-            <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-[var(--color-accent)]/10 flex items-center justify-center mb-4 sm:mb-8 border border-[var(--color-accent)]/20 relative z-10 group-hover:rotate-12 transition-transform">
-              <TrendingDown className="w-5 h-5 sm:w-7 sm:h-7 text-[var(--color-accent)] transform rotate-180" />
+          <div className="col-span-1 bg-gradient-to-br from-[var(--card-grad-3-from)] to-[var(--card-grad-3-to)] rounded-2xl sm:rounded-[28px] p-4 sm:p-6 lg:p-8 border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all flex flex-col justify-between relative overflow-hidden group min-h-[160px] sm:min-h-[auto]">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[var(--color-accent)]/10 flex items-center justify-center mb-4 sm:mb-6 border border-[var(--color-accent)]/20 relative z-10 group-hover:rotate-12 transition-transform">
+              <TrendingDown className="w-5 h-5 sm:w-6 sm:h-6 text-[var(--color-accent)] transform rotate-180" />
             </div>
             <div className="relative z-10">
-              <h3 className="text-sm sm:text-xl font-bold mb-1 sm:mb-3 text-[var(--color-text-primary)] leading-tight">Cost Effective</h3>
-              <p className="text-[var(--color-text-secondary)] leading-relaxed text-[10px] sm:text-base line-clamp-2 sm:line-clamp-none">By eliminating guesswork, we save you lakhs in wasted drilling machinery and labor.</p>
+              <h3 className="text-sm sm:text-lg font-bold mb-1 sm:mb-2 text-[var(--color-text-primary)] leading-tight">Cost Effective</h3>
+              <p className="text-[var(--color-text-secondary)] leading-relaxed text-[10px] sm:text-sm line-clamp-2 sm:line-clamp-none">By eliminating guesswork, we save you lakhs in wasted drilling machinery and labor.</p>
             </div>
           </div>
 
           {/* Bento Box 4: Wide */}
-          <div className="col-span-2 bg-gradient-to-br from-[var(--card-grad-2-from)] to-[var(--card-grad-2-to)] rounded-2xl sm:rounded-[32px] p-5 sm:p-8 lg:p-12 border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-8 relative overflow-hidden group">
+          <div className="col-span-2 bg-gradient-to-br from-[var(--card-grad-2-from)] to-[var(--card-grad-2-to)] rounded-2xl sm:rounded-[28px] p-5 sm:p-6 lg:p-8 border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 relative overflow-hidden group">
              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] pointer-events-none"></div>
              <div className="relative z-10">
-                <h3 className="text-lg sm:text-2xl lg:text-3xl font-bold mb-2 sm:mb-4 text-[var(--color-text-primary)] leading-tight">Join 1000+ Happy Farmers</h3>
-                <p className="text-[var(--color-text-secondary)] text-xs sm:text-lg leading-relaxed max-w-md">We have successfully restored water security for hundreds of families across drought-prone districts.</p>
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 text-[var(--color-text-primary)] leading-tight">Join 1000+ Happy Farmers</h3>
+                <p className="text-[var(--color-text-secondary)] text-xs sm:text-base leading-relaxed max-w-md">We have successfully restored water security for hundreds of families across drought-prone districts.</p>
              </div>
              <div className="relative z-10 flex -space-x-3 sm:-space-x-4">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-8 h-8 sm:w-14 sm:h-14 rounded-full border border-[#121A2F] sm:border-2 bg-gray-600 flex items-center justify-center overflow-hidden">
+                  <div key={i} className="w-8 h-8 sm:w-12 sm:h-12 rounded-full border border-[#121A2F] sm:border-2 bg-gray-600 flex items-center justify-center overflow-hidden">
                     <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Farmer" className="w-full h-full object-cover" />
                   </div>
                 ))}
-                <div className="w-8 h-8 sm:w-14 sm:h-14 rounded-full border border-[#121A2F] sm:border-2 bg-[var(--color-primary)] flex items-center justify-center text-[10px] sm:text-sm font-bold text-[#031312] z-10">
+                <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full border border-[#121A2F] sm:border-2 bg-[var(--color-primary)] flex items-center justify-center text-[10px] sm:text-xs font-bold text-[#031312] z-10">
                   +1k
                 </div>
              </div>
