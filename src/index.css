@@ -31,28 +31,27 @@
   --hero-overlay: linear-gradient(to right, #031312 30%, transparent 70%);
 }
 
+/* LIGHT THEME DISABLED BY USER
 html[data-theme="light"] {
-  /* LIGHT THEME - Professional Clean SaaS Aesthetic (Like Stripe / Linear) */
-  --color-bg: #FCFCFD; /* Ultra soft, clean neutral background */
-  --color-surface: #FFFFFF; /* Crisp pure white cards */
-  --color-surface-light: #F9FAFB; /* gray-50 for subtle depth */
-  --color-text-primary: #111827; /* gray-900 - High contrast, extremely readable text */
-  --color-text-secondary: #4B5563; /* gray-600 - Perfect muted text */
-  --color-border: rgba(0, 0, 0, 0.06); /* Very soft, elegant borders */
+  --color-bg: #FCFCFD;
+  --color-surface: #FFFFFF;
+  --color-surface-light: #F9FAFB;
+  --color-text-primary: #111827;
+  --color-text-secondary: #4B5563;
+  --color-border: rgba(0, 0, 0, 0.06);
   --color-border-hover: rgba(0, 0, 0, 0.15);
   --color-overlay: rgba(252, 252, 253, 0.8);
 
-  /* Very subtle, premium light gradients for cards to give them a modern 3D pop without being colorful */
   --card-grad-1-from: #FFFFFF;
-  --card-grad-1-to: #F4F4F5; /* zinc-100 */
+  --card-grad-1-to: #F4F4F5;
   --card-grad-2-from: #FFFFFF;
   --card-grad-2-to: #F4F4F5;
   --card-grad-3-from: #FFFFFF;
   --card-grad-3-to: #F4F4F5;
 
-  /* PERFECT HERO FADE: Solid clean background for text, sharp fade, totally transparent truck */
   --hero-overlay: linear-gradient(to right, #FCFCFD 45%, rgba(252, 252, 253, 0.85) 55%, transparent 75%);
 }
+*/
 
 body {
   margin: 0;

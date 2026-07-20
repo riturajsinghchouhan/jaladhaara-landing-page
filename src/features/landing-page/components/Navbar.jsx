@@ -16,15 +16,15 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('Home')
-  const [isLightMode, setIsLightMode] = useState(false)
-
-  useEffect(() => {
-    if (isLightMode) {
-      document.documentElement.setAttribute('data-theme', 'light')
-    } else {
-      document.documentElement.removeAttribute('data-theme')
-    }
-  }, [isLightMode])
+  // LIGHT MODE DISABLED
+  // const [isLightMode, setIsLightMode] = useState(false)
+  // useEffect(() => {
+  //   if (isLightMode) {
+  //     document.documentElement.setAttribute('data-theme', 'light')
+  //   } else {
+  //     document.documentElement.removeAttribute('data-theme')
+  //   }
+  // }, [isLightMode])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -90,24 +90,24 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden lg:flex items-center gap-4">
-          <button
+          {/* <button
             onClick={() => setIsLightMode(!isLightMode)}
             className="p-2 rounded-full text-[var(--color-text-primary)] hover:bg-white/10 transition-colors"
             aria-label="Toggle light mode"
           >
             {isLightMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-          </button>
+          </button> */}
           <Button href="#request">Request Borewell</Button>
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <button
+          {/* <button
             onClick={() => setIsLightMode(!isLightMode)}
             className="p-2 rounded-lg text-[var(--color-text-primary)] hover:bg-white/5 transition-colors"
             aria-label="Toggle light mode"
           >
             {isLightMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-          </button>
+          </button> */}
           <button
             type="button"
             className="rounded-lg p-2 text-[var(--color-text-primary)] hover:bg-white/5 transition-colors"
