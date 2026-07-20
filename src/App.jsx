@@ -188,13 +188,13 @@ function App() {
             { img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80", title: "Industrial", desc: "Heavy-duty industrial water detection ensuring uninterrupted supply for manufacturing." }
           ].map((srv, i) => (
             <div key={i} className="bg-[var(--color-surface)] rounded-2xl sm:rounded-[32px] overflow-hidden border border-[var(--color-border)] hover:border-[var(--color-border-hover)] hover:-translate-y-2 transition-all duration-300 group shadow-lg flex flex-col h-full">
-              <div className="w-full h-24 sm:h-56 md:h-72 lg:h-[350px] xl:h-[420px] relative overflow-hidden">
+              <div className="w-full h-24 sm:h-48 md:h-64 lg:h-[260px] xl:h-[300px] relative overflow-hidden">
                 <img src={srv.img} alt={srv.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-[var(--color-surface)]/40 to-transparent opacity-100"></div>
               </div>
-              <div className="p-3 sm:p-8 lg:p-10 pt-0 relative z-10 -mt-4 sm:-mt-12 flex-grow flex flex-col justify-end">
-                <h3 className="text-sm sm:text-2xl lg:text-3xl font-bold mb-1 sm:mb-4 text-[var(--color-text-primary)] group-hover:text-[var(--color-primary)] transition-colors leading-tight">{srv.title}</h3>
-                <p className="text-[var(--color-text-secondary)] leading-relaxed text-[10px] sm:text-base lg:text-lg line-clamp-3 sm:line-clamp-none">{srv.desc}</p>
+              <div className="p-3 sm:p-6 lg:p-8 pt-0 relative z-10 -mt-4 sm:-mt-10 flex-grow flex flex-col justify-end">
+                <h3 className="text-sm sm:text-2xl lg:text-2xl font-bold mb-1 sm:mb-3 text-[var(--color-text-primary)] group-hover:text-[var(--color-primary)] transition-colors leading-tight">{srv.title}</h3>
+                <p className="text-[var(--color-text-secondary)] leading-relaxed text-[10px] sm:text-sm lg:text-base line-clamp-3 sm:line-clamp-none">{srv.desc}</p>
               </div>
             </div>
           ))}
