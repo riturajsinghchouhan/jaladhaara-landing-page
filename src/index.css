@@ -31,6 +31,22 @@
   --hero-overlay: linear-gradient(to right, #031312 30%, transparent 70%);
 }
 
+/* 
+  Fix: Scale down the UI on laptops (like 80% zoom) 
+  Tailwind uses rem units, so reducing base font size scales everything down nicely.
+*/
+@media (min-width: 1024px) {
+  html {
+    font-size: 80%; /* 12.8px */
+  }
+}
+
+@media (min-width: 1536px) {
+  html {
+    font-size: 90%; /* 14.4px on extra large screens */
+  }
+}
+
 /* LIGHT THEME DISABLED BY USER
 html[data-theme="light"] {
   --color-bg: #FCFCFD;
