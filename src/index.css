@@ -4,46 +4,54 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
 
-  --color-primary: #3B82F6;
-  --color-primary-hover: #2563EB;
-  --color-secondary: #1E293B;
-  --color-accent: #38BDF8;
+  --color-primary: #0077B6; /* Deep ocean blue (readable with white text) */
+  --color-primary-hover: #023E8A;
+  --color-secondary: #03045E; 
+  --color-accent: #7FCDFF; /* User's exact gradient color */
 }
 
 :root {
-  /* BLUE & WHITE GLASSMORPHISM THEME */
-  --color-bg: #0B1120;
-  --color-surface: rgba(255, 255, 255, 0.03);
-  --color-surface-light: rgba(255, 255, 255, 0.06);
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #94A3B8;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-hover: rgba(255, 255, 255, 0.15);
-  --color-overlay: rgba(11, 17, 32, 0.7);
+  /* JALADHAARA GLASSMORPHISM THEME (Normal & Clean) */
+  --color-bg: rgba(244, 249, 255, 0.5); /* Crisp icy glass */
+  --color-surface: rgba(255, 255, 255, 0.85); /* Frosty white */
+  --color-surface-light: rgba(223, 247, 255, 0.4); /* Subtle icy blue */
+  
+  --color-text-primary: #011E36; /* Very dark rich blue */
+  --color-text-secondary: #2C4B6B; /* Deep slate blue */
+  
+  --color-border: rgba(255, 255, 255, 0.6); /* White borders for glass edge */
+  --color-border-hover: rgba(255, 255, 255, 0.9);
+  --color-overlay: rgba(223, 247, 255, 0.85);
 
-  --card-grad-1-from: rgba(59, 130, 246, 0.05);
-  --card-grad-1-to: rgba(255, 255, 255, 0.02);
-  --card-grad-2-from: rgba(56, 189, 248, 0.05);
-  --card-grad-2-to: rgba(255, 255, 255, 0.02);
-  --card-grad-3-from: rgba(255, 255, 255, 0.05);
-  --card-grad-3-to: rgba(255, 255, 255, 0.01);
+  --card-grad-1-from: rgba(127, 205, 255, 0.3);
+  --card-grad-1-to: rgba(223, 247, 255, 0.1);
+  --card-grad-2-from: rgba(255, 255, 255, 0.6);
+  --card-grad-2-to: rgba(255, 255, 255, 0.1);
+  --card-grad-3-from: rgba(255, 255, 255, 0.8);
+  --card-grad-3-to: rgba(127, 205, 255, 0.2);
 
-  --hero-overlay: linear-gradient(to right, #0B1120 30%, transparent 70%);
+  --hero-overlay: linear-gradient(to right, #7FCDFF 15%, rgba(127, 205, 255, 0) 55%);
 }
 
 /* 
-  Fix: Scale down the UI on laptops (like 80% zoom) 
+  Fix: Scale down the UI globally for Desktop screens 
   Tailwind uses rem units, so reducing base font size scales everything down nicely.
 */
 @media (min-width: 1024px) {
   html {
-    font-size: 80%; /* 12.8px */
+    font-size: 70%; /* Scales UI down to 70% */
+  }
+}
+
+@media (min-width: 1280px) {
+  html {
+    font-size: 75%; /* Scales UI down to 75% */
   }
 }
 
 @media (min-width: 1536px) {
   html {
-    font-size: 90%; /* 14.4px on extra large screens */
+    font-size: 80%; /* Scales UI down to 80% on extra large monitors */
   }
 }
 
@@ -73,9 +81,17 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   color: var(--color-text-primary);
-  background: var(--color-bg);
+  /* Clean, normal, very light icy background */
+  background: linear-gradient(135deg, #F4F9FF 0%, #E2F2FC 100%);
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Global Glassmorphism Blur for all sections and surfaces */
+section, .bg-\[var\(--color-surface\)\], .bg-\[var\(--color-bg\)\] {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -142,11 +158,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glass-panel {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(18, 48, 99, 0.1);
+  box-shadow: 0 4px 30px rgba(18, 48, 99, 0.08);
 }
 
 .premium-shadow {
@@ -154,7 +170,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-gradient {
-  background: linear-gradient(90deg, #00D084 0%, #3ecf9a 100%);
+  background: linear-gradient(90deg, #0077B6 0%, #00B4D8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

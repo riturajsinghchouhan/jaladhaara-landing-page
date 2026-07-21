@@ -7,9 +7,9 @@ const links = [
   { label: 'Home', href: '#home' },
   { label: 'Services', href: '#services' },
   { label: 'Why Us', href: '#why-us' },
-  { label: 'Areas', href: '#areas' },
   { label: 'Apps', href: '#apps' },
   { label: 'Reviews', href: '#reviews' },
+  { label: 'Contact Us', href: '#request' },
 ]
 
 export default function Navbar() {
@@ -61,8 +61,8 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled || open
-          ? 'bg-[var(--color-bg)]/80 backdrop-blur-xl border-b border-[var(--color-border)] shadow-[0_4px_30px_rgba(0,0,0,0.1)]'
-          : 'bg-transparent'
+          ? 'bg-white/95 backdrop-blur-xl border-b border-[#7FCDFF]/50 shadow-md'
+          : 'bg-white/60 backdrop-blur-md border-b border-white/40'
       }`}
     >
       <nav className="w-full px-6 lg:px-16 xl:px-24 2xl:px-32 h-20 flex items-center justify-between">
@@ -82,7 +82,7 @@ export default function Navbar() {
               >
                 {link.label}
                 {active === link.label && (
-                  <span className="absolute -bottom-1.5 left-0 h-[3px] w-full rounded-t-full bg-[var(--color-primary)] shadow-[0_0_10px_rgba(0,208,132,0.8)]" />
+                  <span className="absolute -bottom-1.5 left-0 h-[3px] w-full rounded-t-full bg-[var(--color-primary)] shadow-[0_0_8px_rgba(0,119,182,0.6)]" />
                 )}
               </a>
             </li>
@@ -129,7 +129,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer Menu */}
       <div
-        className={`fixed top-0 right-0 z-50 h-screen w-[280px] sm:w-[320px] bg-[var(--color-bg)] border-l border-[var(--color-border)] shadow-2xl transform transition-transform duration-300 ease-in-out lg:hidden flex flex-col ${
+        className={`fixed top-0 right-0 z-50 h-screen w-[280px] sm:w-[320px] bg-white border-l border-[var(--color-border)] shadow-2xl transform transition-transform duration-300 ease-in-out lg:hidden flex flex-col ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
