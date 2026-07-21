@@ -19,7 +19,7 @@ export default function Logo({ light = false, compact = false }) {
           <span
             className="block text-[11px] font-medium text-[var(--color-text-secondary)]"
           >
-            Exploring and protecting our groundwater
+
           </span>
         )}
       </span>

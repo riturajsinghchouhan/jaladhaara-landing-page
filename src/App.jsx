@@ -266,7 +266,7 @@ function App() {
             For Professionals
           </div>
           <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight max-w-3xl mx-auto text-[var(--color-text-primary)] leading-[1.2]">
-            Join India's #1<br />
+            Join India's first groundwater experts Network<br />
             <span className="text-[var(--color-text-secondary)] font-light">Groundwater Expert Network.</span>
           </h2>
           <p className="text-[var(--color-text-secondary)] mt-6 text-base sm:text-xl">Grow your business. Make a bigger impact.</p>
@@ -519,15 +519,15 @@ function App() {
             <img src={heroBg} alt="Team Background" className="w-full h-full object-cover object-[75%_center] lg:object-center" />
           </div>
 
-          <div className="relative z-10">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-3 sm:mb-6 leading-tight">
+          <div className="relative z-10 bg-white/70 backdrop-blur-md p-5 sm:p-6 lg:p-8 rounded-3xl border border-white/50 shadow-xl shadow-black/5 max-w-sm lg:max-w-md">
+            <h2 className="text-[26px] sm:text-3xl lg:text-4xl font-extrabold mb-2 sm:mb-4 leading-tight text-[var(--color-text-primary)] drop-shadow-sm">
               Download the App <br className="hidden sm:block" /> and Get Started.
             </h2>
-            <p className="text-[var(--color-text-secondary)] mb-6 sm:mb-10 text-sm sm:text-lg max-w-md">
-              Find, connect, survey.
+            <p className="text-[var(--color-text-secondary)] mb-5 sm:mb-8 text-[13px] sm:text-base max-w-[280px] sm:max-w-xs font-medium leading-relaxed">
+              Find, connect, survey, India's first groundwater surveys booking platform.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full">
+            <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 w-full">
               <button className="w-full sm:w-auto h-12 sm:h-14 px-6 sm:px-8 rounded-xl bg-[var(--color-primary)] text-white font-bold text-sm sm:text-base hover:bg-[var(--color-primary-hover)] transition-all flex items-center justify-center gap-3 shadow-lg">
                 <svg viewBox="0 0 512 512" fill="currentColor" className="w-4 h-4 sm:w-5 sm:h-5"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z" /></svg>
                 Google Play
@@ -540,38 +540,25 @@ function App() {
           </div>
 
           <div className="relative z-10 flex justify-center lg:justify-end pb-8 lg:pb-0">
-            <div className="relative w-full max-w-[250px] sm:max-w-xs lg:max-w-sm aspect-square rounded-full lg:bg-gradient-to-tr from-[var(--color-primary)]/20 to-transparent flex items-center justify-center border-none lg:border border-[var(--color-border)]">
+            <div className="relative w-full lg:max-w-sm lg:aspect-square lg:rounded-full lg:bg-gradient-to-tr from-[var(--color-primary)]/20 to-transparent flex items-center justify-center border-none lg:border border-[var(--color-border)] mt-8 lg:mt-0">
               <Droplets className="w-20 h-20 lg:w-32 lg:h-32 text-[var(--color-primary)] opacity-50 hidden lg:block" />
 
               {/* Floating Expert Testimonial */}
-              <div className="absolute -left-12 sm:-left-16 lg:-left-32 -top-4 sm:-top-8 lg:-top-16 glass-panel p-3 sm:p-5 rounded-2xl w-[85%] sm:max-w-[280px] animate-float-slow hidden sm:block z-20">
-                <div className="flex gap-1 mb-1.5 sm:mb-2">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 fill-[var(--color-primary)] text-[var(--color-primary)]" />)}
+              <div className="relative lg:absolute lg:-left-32 lg:-top-16 glass-panel p-5 rounded-2xl w-full max-w-[300px] lg:max-w-[280px] animate-float-slow z-20 mx-auto shadow-2xl">
+                <div className="flex gap-1 mb-2">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-[var(--color-primary)] text-[var(--color-primary)]" />)}
                 </div>
-                <p className="text-[10px] sm:text-sm text-[var(--color-text-primary)]/90 font-medium mb-2 sm:mb-3 leading-snug">"As a professional, Jaladhaara has completely transformed how I get survey requests. It's seamless and highly reliable!"</p>
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-500"></div>
+                <p className="text-xs sm:text-sm text-[var(--color-text-primary)]/90 font-medium mb-3 sm:mb-4 leading-snug">"As a professional, Jaladhaara has completely transformed how I get survey requests. It's seamless and highly reliable!"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-gray-500"></div>
                   <div>
-                    <div className="text-[11px] sm:text-xs font-bold leading-none">Vikram Singh</div>
-                    <div className="text-[9px] sm:text-[10px] text-[var(--color-text-secondary)] mt-0.5">Senior Geologist, Indore</div>
+                    <div className="text-xs sm:text-sm font-bold leading-none">Vikram Singh</div>
+                    <div className="text-[10px] sm:text-[11px] text-[var(--color-text-secondary)] mt-1">Senior Geologist, Indore</div>
                   </div>
                 </div>
               </div>
 
-              {/* Floating Testimonial */}
-              <div className="absolute -left-2 sm:-left-4 lg:-left-12 -bottom-8 sm:-bottom-12 lg:-bottom-16 glass-panel p-3 sm:p-5 rounded-2xl w-[90%] sm:max-w-[280px] animate-float z-30">
-                <div className="flex gap-1 mb-1.5 sm:mb-2">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 fill-[var(--color-accent)] text-[var(--color-accent)]" />)}
-                </div>
-                <p className="text-[10px] sm:text-sm text-[var(--color-text-primary)]/90 font-medium mb-2 sm:mb-3 leading-snug">"Jaladhaara helped us find the right expert in our area. The survey was professional and the report was very detailed. Highly recommended!"</p>
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-500"></div>
-                  <div>
-                    <div className="text-[11px] sm:text-xs font-bold leading-none">Ramesh Patel</div>
-                    <div className="text-[9px] sm:text-[10px] text-[var(--color-text-secondary)] mt-0.5">Farmer, Warangal, Telangana</div>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -591,7 +578,7 @@ function App() {
 
         <div className="max-w-2xl mx-auto w-full bg-[var(--color-surface)] backdrop-blur-xl rounded-[32px] p-8 sm:p-12 border border-[var(--color-border)] shadow-2xl shadow-[#0077B6]/15">
           <form action="mailto:info@jaladhaaraapp.in" method="POST" encType="text/plain" className="space-y-5 sm:space-y-6">
-            
+
             <div className="space-y-2">
               <label htmlFor="name" className="text-sm font-bold text-[var(--color-text-primary)]">Name <span className="text-[var(--color-primary)]">*</span></label>
               <input type="text" id="name" name="Name" required placeholder="Enter your name" className="w-full px-5 py-4 rounded-xl bg-white/60 border border-[var(--color-border)] focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 outline-none transition-all placeholder:text-gray-400 text-[var(--color-text-primary)] shadow-inner" />
@@ -613,8 +600,8 @@ function App() {
               <div className="relative">
                 <select id="userType" name="UserType" required defaultValue="" className="w-full px-5 py-4 rounded-xl bg-white/60 border border-[var(--color-border)] focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 outline-none transition-all appearance-none text-[var(--color-text-primary)] cursor-pointer shadow-inner">
                   <option value="" disabled>-select-</option>
-                  <option value="Customer">Customer (Farmer, Landowner, Builder)</option>
-                  <option value="Expert">Expert (Geologist, Survey Team)</option>
+                  <option value="Customer">Customer </option>
+                  <option value="Expert">Expert</option>
                 </select>
                 <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none">
                   <svg className="w-5 h-5 text-[var(--color-text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
