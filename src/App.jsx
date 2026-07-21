@@ -9,6 +9,10 @@ import probImg3 from './assets/financial_loss.png';
 import bentoScan from './assets/bento_scanning.png';
 import bentoWater from './assets/bento_water_success.png';
 import imgAgri from './assets/service_agriculture.png';
+import cardAgri from './assets/Agriculture .png';
+import cardRes from './assets/Residential.png';
+import cardCom from './assets/Commercial.png';
+import cardInd from './assets/Industrial.png';
 import indiaMap from './assets/india_map.svg';
 import IndiaMap from './IndiaMap';
 import Navbar from './features/landing-page/components/Navbar';
@@ -192,10 +196,10 @@ function App() {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8 reveal flex-grow content-start sm:content-center">
           {[
-            { img: imgAgri, title: "Agriculture", desc: "Connect with experts for scientific site selection to ensure reliable irrigation and support rural development." },
-            { img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80", title: "Residential", desc: "Book verified professionals for groundwater detection for homes, apartments, and real estate projects." },
-            { img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80", title: "Commercial", desc: "Access top surveyors for infrastructure development, commercial complexes, hospitals, and educational institutions." },
-            { img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80", title: "Industrial", desc: "Comprehensive groundwater resource assessment and digital documentation for large-scale mining and industrial plants." }
+            { img: cardAgri, title: "Agriculture", desc: "Connect with experts for scientific site selection to ensure reliable irrigation and support rural development." },
+            { img: cardRes, title: "Residential", desc: "Book verified professionals for groundwater detection for homes, apartments, and real estate projects." },
+            { img: cardCom, title: "Commercial", desc: "Access top surveyors for infrastructure development, commercial complexes, hospitals, and educational institutions." },
+            { img: cardInd, title: "Industrial", desc: "Comprehensive groundwater resource assessment and digital documentation for large-scale mining and industrial plants." }
           ].map((srv, i) => (
             <div key={i} className="bg-[var(--color-surface)] backdrop-blur-xl rounded-2xl sm:rounded-[32px] overflow-hidden border border-[var(--color-border)] hover:border-[var(--color-border-hover)] hover:-translate-y-2 transition-all duration-300 group shadow-xl hover:shadow-2xl hover:shadow-[#0077B6]/15 flex flex-col h-full">
               <div className="w-full h-32 sm:h-48 md:h-64 lg:h-[220px] xl:h-[260px] relative overflow-hidden shrink-0 border-b border-[var(--color-border)]">
