@@ -177,19 +177,25 @@ function App() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-up');
+            entry.target.classList.add('is-visible');
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: '0px 0px -50px 0px' }
     );
 
-    document.querySelectorAll('.reveal').forEach((el) => {
-      observer.observe(el);
-    });
+    // Wait a brief moment for the DOM to be fully ready (helpful for Lenis and React 18)
+    const timeoutId = setTimeout(() => {
+      document.querySelectorAll('.reveal').forEach((el) => {
+        observer.observe(el);
+      });
+    }, 100);
 
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -608,8 +614,8 @@ function App() {
       {/* CTA Banner / Reviews */}
       <section id="reviews" className="min-h-[auto] lg:min-h-screen py-12 sm:py-20 lg:py-32 px-4 sm:px-6 lg:px-16 xl:px-24 2xl:px-32 w-full relative overflow-hidden flex flex-col justify-center reveal">
         <div className="relative w-full rounded-3xl lg:rounded-[40px] overflow-hidden bg-[var(--color-bg)] border border-[var(--color-border)] p-8 sm:p-10 lg:p-16 grid lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-12 items-center shadow-2xl shadow-[#0077B6]/15">
-          <div className="absolute inset-0 z-0">
-            <img src={heroBg} alt="Team Background" className="w-full h-full object-cover object-[75%_center] lg:object-center" />
+          <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#7FCDFF] to-[#E2F2FC] sm:bg-none">
+            <img src={heroBg} alt="Team Background" className="w-full h-full object-cover object-[75%_center] lg:object-center opacity-0 sm:opacity-100 transition-opacity duration-300" />
           </div>
 
           <div className="relative z-10 bg-white/70 backdrop-blur-md p-5 sm:p-6 lg:p-8 rounded-3xl border border-white/50 shadow-xl shadow-black/5 max-w-sm lg:max-w-md">
@@ -697,29 +703,29 @@ function App() {
 
             <div className="space-y-2">
               <label htmlFor="name" className="text-sm font-bold text-[var(--color-text-primary)]">Name <span className="text-[var(--color-primary)]">*</span></label>
-              <input type="text" id="name" name="Name" required placeholder="Enter your name" className="w-full px-5 py-4 rounded-xl bg-white/60 border border-[var(--color-border)] focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 outline-none transition-all placeholder:text-gray-400 text-[var(--color-text-primary)] shadow-inner" />
+              <input type="text" id="name" name="Name" required placeholder="Enter your name" className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-[var(--color-border)] focus:border-[var(--color-primary)] focus:ring-0 outline-none transition-all placeholder:text-gray-400 text-[var(--color-text-primary)]" />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
               <div className="space-y-2">
                 <label htmlFor="email" className="text-sm font-bold text-[var(--color-text-primary)]">Email Address <span className="text-[var(--color-primary)]">*</span></label>
-                <input type="email" id="email" name="Email" required placeholder="Enter your email" className="w-full px-5 py-4 rounded-xl bg-white/60 border border-[var(--color-border)] focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 outline-none transition-all placeholder:text-gray-400 text-[var(--color-text-primary)] shadow-inner" />
+                <input type="email" id="email" name="Email" required placeholder="Enter your email" className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-[var(--color-border)] focus:border-[var(--color-primary)] focus:ring-0 outline-none transition-all placeholder:text-gray-400 text-[var(--color-text-primary)]" />
               </div>
               <div className="space-y-2">
                 <label htmlFor="mobile" className="text-sm font-bold text-[var(--color-text-primary)]">Mobile Number <span className="text-[var(--color-primary)]">*</span></label>
-                <input type="tel" id="mobile" name="Mobile" required placeholder="Enter your mobile number" className="w-full px-5 py-4 rounded-xl bg-white/60 border border-[var(--color-border)] focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 outline-none transition-all placeholder:text-gray-400 text-[var(--color-text-primary)] shadow-inner" />
+                <input type="tel" id="mobile" name="Mobile" required placeholder="Enter your mobile number" className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-[var(--color-border)] focus:border-[var(--color-primary)] focus:ring-0 outline-none transition-all placeholder:text-gray-400 text-[var(--color-text-primary)]" />
               </div>
             </div>
 
             <div className="space-y-2">
               <label htmlFor="userType" className="text-sm font-bold text-[var(--color-text-primary)]">You are a <span className="text-[var(--color-primary)]">*</span></label>
               <div className="relative">
-                <select id="userType" name="UserType" required defaultValue="" className="w-full px-5 py-4 rounded-xl bg-white/60 border border-[var(--color-border)] focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 outline-none transition-all appearance-none text-[var(--color-text-primary)] cursor-pointer shadow-inner">
+                <select id="userType" name="UserType" required defaultValue="" className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-[var(--color-border)] focus:border-[var(--color-primary)] focus:ring-0 outline-none transition-all appearance-none text-[var(--color-text-primary)] cursor-pointer">
                   <option value="" disabled>-select-</option>
                   <option value="Customer">Customer </option>
                   <option value="Expert">Expert</option>
                 </select>
-                <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none">
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
                   <svg className="w-5 h-5 text-[var(--color-text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
               </div>
@@ -727,7 +733,7 @@ function App() {
 
             <div className="space-y-2">
               <label htmlFor="comment" className="text-sm font-bold text-[var(--color-text-primary)]">Comment <span className="text-[var(--color-primary)]">*</span></label>
-              <textarea id="comment" name="Comment" required rows="4" placeholder="Enter your comment" className="w-full px-5 py-4 rounded-xl bg-white/60 border border-[var(--color-border)] focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 outline-none transition-all placeholder:text-gray-400 text-[var(--color-text-primary)] resize-none shadow-inner"></textarea>
+              <textarea id="comment" name="Comment" required rows="3" placeholder="Enter your comment" className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-[var(--color-border)] focus:border-[var(--color-primary)] focus:ring-0 outline-none transition-all placeholder:text-gray-400 text-[var(--color-text-primary)] resize-none"></textarea>
             </div>
 
             <button type="submit" className="w-full py-4 mt-2 rounded-xl bg-[var(--color-primary)] text-white font-bold text-lg hover:bg-[var(--color-primary-hover)] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2">
