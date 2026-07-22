@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 import bottomBg from './assets/bottom.png';
@@ -16,6 +16,7 @@ import cardInd from './assets/Industrial.png';
 import indiaMap from './assets/india_map.svg';
 import IndiaMap from './IndiaMap';
 import Navbar from './features/landing-page/components/Navbar';
+import Logo from './components/ui/Logo';
 import {
   MapPin,
   Droplets,
@@ -35,11 +36,99 @@ import {
   Share2,
   Globe,
   Send,
-  Play
+  Play,
+  X,
+  ChevronDown
 } from 'lucide-react';
+
+const faqs = [
+  {
+    q: "What is Jaladhaara?",
+    a: "Jaladhaara is India's first dedicated groundwater survey booking platform that connects customers with verified and trained experts for conducting scientific borewell surveys."
+  },
+  {
+    q: "How do i book a groundwater survey?",
+    a: "Simply download the Jaladhaara app, select your location, choose a verified expert, confirm booking."
+  },
+  {
+    q: "Who can use Jaladhaara app?",
+    a: "Jaladhaara is designed for farmers, home owners, industries, commercial real estate developers, institutions and anyone planning to drill a borewell."
+  },
+  {
+    q: "What survey methods are available?",
+    a: "Our experts conduct Geophysical Investigations using advanced scientific methods such as Electrical resistivity, PQWT, ADMT, 3D locator and other approved groundwater survey techniques depending on the site requirements."
+  },
+  {
+    q: "Can Jaladhaara guarantee borewell success?",
+    a: "No. Groundwater occurence depends on natural geological conditions. Jaladhaara only connects customers with verified experts who use geoscientific survey methods to improve borewell planning."
+  },
+  {
+    q: "How are experts verified?",
+    a: "Experts undergo a verification process based on their qualification, field experience, years of service, identity, and other documents before joining the platform."
+  },
+  {
+    q: "How do I pay for the survey?",
+    a: "Payments are made securely through the Jaladhaara app using the available online payment options."
+  },
+  {
+    q: "Will I receive a survey report?",
+    a: "Yes. The expert will provide a digital survey report through the Jaladhaara platform after completing the survey."
+  },
+  {
+    q: "Can groundwater survey experts join Jaladhaara?",
+    a: "Yes. Qualified, trained and eligible groundwater survey professionals can register through the Jaladhaara Expert app and complete the verification process."
+  },
+  {
+    q: "Which sectors does Jaladhaara serve?",
+    a: "Jaladhaara provides bookings for groundwater survey services for\n1.Agriculture\n2.Residential\n3.Industrial\n4.Commercial (including open plot ventures, gated communities, and real estate developments)"
+  },
+  {
+    q: "Is Jaladhaara available across India?",
+    a: "Jaladhaara is building a nationwide network of verified and trained groundwater survey experts to customers across India."
+  },
+  {
+    q: "How can I contact Jaladhaara?",
+    a: "You can contact us through Jaladhaara app, website, email, phone or WhatsApp for booking assistance and support."
+  }
+];
+
+function FaqItem({ faq, isOpen, onClick }) {
+  const contentRef = useRef(null);
+  
+  return (
+    <div className="border border-[var(--color-border)] bg-[var(--color-surface)] backdrop-blur-md rounded-2xl mb-4 overflow-hidden shadow-sm transition-all duration-300">
+      <button 
+        onClick={onClick} 
+        className="w-full text-left px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/50"
+      >
+        <span className="font-bold text-[var(--color-text-primary)] pr-4 text-sm sm:text-base">{faq.q}</span>
+        <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[var(--color-bg)] flex items-center justify-center shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 bg-[var(--color-primary)] text-white' : 'text-[var(--color-text-secondary)]'}`}>
+          <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
+        </div>
+      </button>
+      <div 
+        className="transition-all duration-300 ease-in-out px-5 sm:px-6"
+        style={{ 
+          maxHeight: isOpen ? contentRef.current?.scrollHeight + 40 + 'px' : '0px',
+          opacity: isOpen ? 1 : 0,
+          paddingBottom: isOpen ? '1.25rem' : '0'
+        }}
+        ref={contentRef}
+      >
+        <div className="text-[var(--color-text-secondary)] text-sm sm:text-base leading-relaxed whitespace-pre-wrap pt-2">
+          {faq.a}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function App() {
   const appsScrollRef = useRef(null);
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
 
   // Initialize Lenis for smooth scrolling
   useEffect(() => {
@@ -109,17 +198,17 @@ function App() {
 
       {/* Hero Section */}
       <section id="home" className="relative min-h-[100svh] lg:min-h-screen flex flex-col lg:justify-center overflow-hidden bg-[var(--color-bg)] pb-12 lg:pb-0">
-        {/* Background Image - Full height on all screens */}
-        <div className="absolute inset-0 w-full h-full z-0">
-          <img src={heroBg} alt="Borewell Machine" className="w-full h-full object-cover object-[75%_center] lg:object-center" />
-          {/* Gradient Overlay (Hidden on Mobile) */}
-          <div className="absolute inset-0 w-full h-full pointer-events-none hidden md:block" style={{ background: 'var(--hero-overlay)' }}></div>
+        {/* Gradient Background */}
+        <div className="absolute inset-0 w-full h-full z-0 bg-gradient-to-br from-[#E2F2FC] via-[#F4F9FF] to-[#7FCDFF]/30">
+          {/* Decorative blur blobs */}
+          <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[50%] bg-[var(--color-accent)] opacity-20 blur-[100px] rounded-full pointer-events-none"></div>
+          <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[60%] bg-[var(--color-primary)] opacity-10 blur-[120px] rounded-full pointer-events-none"></div>
         </div>
 
         {/* Content Container */}
         <div className="w-full px-4 sm:px-6 lg:px-16 xl:px-24 2xl:px-32 relative z-10 flex-1 flex flex-col pt-32 pb-8 lg:py-0">
           <div className="w-full flex-1 grid lg:grid-cols-12 gap-6 sm:gap-8">
-            <div className="lg:col-span-8 flex flex-col justify-between lg:justify-center items-start reveal lg:py-24 relative h-full">
+            <div className="lg:col-span-8 flex flex-col justify-center items-start reveal py-12 lg:py-24 relative h-full">
               {/* Text Block */}
               <div className="w-full bg-white/70 lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none p-5 sm:p-8 lg:p-0 rounded-3xl lg:rounded-none border border-white/40 lg:border-none shadow-xl shadow-black/5 lg:shadow-none mb-6 lg:mb-0">
                 <div className="text-[var(--color-primary)] text-[9px] sm:text-sm font-extrabold uppercase tracking-[0.15em] mb-2 sm:mb-8 drop-shadow-sm">
@@ -127,18 +216,18 @@ function App() {
                 </div>
 
                 <h1 className="text-[26px] sm:text-4xl lg:text-[45px] xl:text-[55px] font-black leading-[1.25] lg:leading-[1.1] tracking-tight mb-3 sm:mb-8 text-[var(--color-text-primary)] font-display">
-                  <span className="block mb-1 lg:mb-2">India's First</span>
-                  <span className="block mb-1 lg:mb-2 text-[var(--color-primary)] lg:text-white lg:drop-shadow-md">End-to-End Groundwater</span>
-                  <span className="block">Solution Platform</span>
+                  <span className="block mb-1 lg:mb-2">India's Trusted Platform to</span>
+                  <span className="block mb-1 lg:mb-2 text-[var(--color-primary)] lg:drop-shadow-sm">Book Verified Groundwater</span>
+                  <span className="block">Survey Experts</span>
                 </h1>
 
-                <p className="text-[13px] sm:text-xl text-[var(--color-text-secondary)] mb-2 sm:mb-12 max-w-2xl leading-[1.6] sm:leading-[1.7] font-medium lg:font-normal">
+                <p className="text-[13px] sm:text-xl text-[var(--color-text-secondary)] mb-2 sm:mb-6 max-w-2xl leading-[1.6] sm:leading-[1.7] font-medium lg:font-normal">
                   India's Groundwater Experts at Your Fingertips. Find, connect, survey, and protect our vital resources with verified professionals.
                 </p>
               </div>
 
               {/* Action Block */}
-              <div className="w-full mt-auto lg:mt-12 pt-12 lg:pt-0">
+              <div className="w-full mt-6 lg:mt-6 pt-4 lg:pt-0">
                 <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 sm:mb-12">
                   {['FIND', 'CONNECT', 'SURVEY', 'PROTECT'].map((word, i) => (
                     <div key={i} className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-white border border-[var(--color-border)] shadow-sm">
@@ -271,7 +360,7 @@ function App() {
           </div>
           <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight max-w-3xl mx-auto text-[var(--color-text-primary)] leading-[1.2]">
             Join India's first groundwater experts Network<br />
-            <span className="text-[var(--color-text-secondary)] font-light">Groundwater Expert Network.</span>
+            <span className="block mt-4 text-lg sm:text-xl lg:text-2xl text-[var(--color-text-secondary)] font-medium leading-[1.5]">Be part of India's growing community of verified hydrogeologists, geophysicists, and groundwater survey professionals.</span>
           </h2>
           <p className="text-[var(--color-text-secondary)] mt-6 text-base sm:text-xl">Grow your business. Make a bigger impact.</p>
         </div>
@@ -463,7 +552,7 @@ function App() {
                 <Droplets className="w-5 h-5 sm:w-8 sm:h-8 text-white" />
               </div>
               <h3 className="text-xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-4 text-white leading-tight">Jaladhaara</h3>
-              <p className="text-white/80 text-xs sm:text-base lg:text-lg leading-relaxed mb-5 sm:mb-10 max-w-md">For Farmers and Landowners. Book groundwater scanning and manage your borewell projects securely from your phone.</p>
+              <p className="text-white/80 text-xs sm:text-base lg:text-lg leading-relaxed mb-5 sm:mb-10 max-w-md">Find and book verified groundwater survey experts near  you for agricultural,  residential, industrial and commercial needs.</p>
             </div>
 
             <div className="flex flex-row flex-wrap gap-2 sm:gap-4 relative z-10 w-full mt-auto">
@@ -493,7 +582,7 @@ function App() {
                 <Crosshair className="w-5 h-5 sm:w-8 sm:h-8 text-white" />
               </div>
               <h3 className="text-xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-4 text-white leading-tight">Jaladhaara <span className="text-[#90E0EF] block sm:inline">Expert</span></h3>
-              <p className="text-white/80 text-xs sm:text-base lg:text-lg leading-relaxed mb-5 sm:mb-10 max-w-md">For Geologists and Drilling Teams. Access 3D scan data, navigate to exact coordinates, and update live project status from the field.</p>
+              <p className="text-white/80 text-xs sm:text-base lg:text-lg leading-relaxed mb-5 sm:mb-10 max-w-md">A dedicated app for verified groundwater experts to manage bookings, conduct surveys, submit digital reports with ease and build trusted professional profile</p>
             </div>
 
             <div className="flex flex-row flex-wrap gap-2 sm:gap-4 relative z-10 w-full mt-auto">
@@ -568,8 +657,31 @@ function App() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section id="faqs" className="py-12 sm:py-20 lg:py-32 px-4 sm:px-6 lg:px-16 xl:px-24 2xl:px-32 w-full relative overflow-hidden flex flex-col justify-center bg-[var(--color-surface)] border-t border-[var(--color-border)]">
+        <div className="text-center mb-10 sm:mb-16 reveal">
+          <div className="inline-block px-4 py-1.5 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-bold uppercase tracking-wider mb-6 border border-[var(--color-primary)]/20">
+            FAQs
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight max-w-2xl mx-auto text-[var(--color-text-primary)]">
+            Frequently Asked Questions
+          </h2>
+        </div>
+        
+        <div className="max-w-3xl mx-auto w-full reveal">
+          {faqs.map((faq, index) => (
+            <FaqItem 
+              key={index} 
+              faq={faq} 
+              isOpen={openFaqIndex === index} 
+              onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)} 
+            />
+          ))}
+        </div>
+      </section>
+
       {/* Request / Contact Form Section */}
-      <section id="request" className="py-12 sm:py-20 lg:py-32 px-4 sm:px-6 lg:px-16 xl:px-24 2xl:px-32 w-full relative overflow-hidden flex flex-col justify-center reveal">
+      <section id="request" className="py-12 sm:py-20 lg:py-32 px-4 sm:px-6 lg:px-16 xl:px-24 2xl:px-32 w-full relative overflow-hidden flex flex-col justify-center reveal bg-[var(--color-bg)]">
         <div className="text-center mb-10 sm:mb-16">
           <div className="inline-block px-4 py-1.5 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-bold uppercase tracking-wider mb-6 border border-[var(--color-primary)]/20">
             Contact Us
@@ -630,29 +742,38 @@ function App() {
       <footer className="border-t border-[var(--color-border)] bg-[var(--color-bg)] pt-12 sm:pt-20 pb-8 sm:pb-10 px-4 sm:px-6 lg:px-16 xl:px-24 2xl:px-32 w-full">
         <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12 sm:mb-16">
           <div className="col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4 sm:mb-6">
-              <Droplets className="w-6 h-6 sm:w-8 sm:h-8 text-[var(--color-primary)]" />
-              <span className="font-display font-bold text-xl sm:text-2xl tracking-tight">Jaladhaara</span>
+            <div className="mb-4 sm:mb-6">
+              <Logo />
             </div>
             <p className="text-[var(--color-text-secondary)] text-sm mb-6 leading-relaxed">
-              Jaladhaara Groundwater Survey Pvt Ltd.<br />
-              Exploring and protecting our groundwater through India's first digital survey platform.
+              Jaladhaara simplifies groundwater surveys by connecting customers with verified experts through secure booking, digital reports, and scientific survey methods.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"><MessageCircle className="w-5 h-5" /></a>
-              <a href="#" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"><Share2 className="w-5 h-5" /></a>
-              <a href="#" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"><Globe className="w-5 h-5" /></a>
-              <a href="#" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"><Send className="w-5 h-5" /></a>
+              <a href="https://www.instagram.com/jaladhaara_groundwatersurvey?utm_source=qr&igsh=MWVoeDQwcnZ1YzU1OA==" target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-secondary)] hover:text-[#E1306C] transition-colors">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" /></svg>
+              </a>
+              <a href="https://youtube.com/@jaladhaaragroundwatersurvey?si=4AdCDECSZdqOP6Cs" target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-secondary)] hover:text-[#FF0000] transition-colors">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
+              </a>
+              <a href="https://www.facebook.com/share/1Dpw3CdKWk/" target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-secondary)] hover:text-[#1877F2] transition-colors">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" /></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/jaladhaara-groundwater-survey-pvt-ltd-097617350?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-secondary)] hover:text-[#0A66C2] transition-colors">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+              </a>
+              <a href="https://x.com/jaladhaara" target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-secondary)] hover:text-[#1DA1F2] transition-colors">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" /></svg>
+              </a>
             </div>
           </div>
 
           <div>
             <h4 className="font-bold mb-6 text-[var(--color-text-primary)]">Quick Links</h4>
             <ul className="space-y-4">
-              <li><a href="#home" className="text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] text-sm transition-colors">About Us</a></li>
+              <li><a href="#" onClick={(e) => { e.preventDefault(); setIsAboutModalOpen(true); }} className="text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] text-sm transition-colors">About Us</a></li>
               <li><a href="#services" className="text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] text-sm transition-colors">Our Services</a></li>
-              <li><a href="#experts" className="text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] text-sm transition-colors">For Experts</a></li>
-              <li><a href="#" className="text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] text-sm transition-colors">Privacy Policy</a></li>
+              <li><a href="#" onClick={(e) => { e.preventDefault(); setIsTermsModalOpen(true); }} className="text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] text-sm transition-colors">Terms & Conditions</a></li>
+              <li><a href="#" onClick={(e) => { e.preventDefault(); setIsPrivacyModalOpen(true); }} className="text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] text-sm transition-colors">Privacy Policy</a></li>
             </ul>
           </div>
 
@@ -686,6 +807,311 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* About Us Modal */}
+      {isAboutModalOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-fade-in"
+          onClick={() => setIsAboutModalOpen(false)}
+        >
+          <div 
+            className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col animate-fade-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 sm:p-8 border-b border-gray-100 bg-gray-50/50">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--color-text-primary)]">About Us</h2>
+              <button 
+                onClick={() => setIsAboutModalOpen(false)}
+                className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-800 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            {/* Modal Body */}
+            <div 
+              className="p-6 sm:p-8 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+              data-lenis-prevent="true"
+            >
+              <div className="space-y-8 text-[var(--color-text-secondary)] leading-relaxed text-sm sm:text-base">
+                
+                {/* Mission & Vision */}
+                <div className="grid sm:grid-cols-2 gap-8">
+                  <div className="bg-[var(--color-bg)] p-6 rounded-2xl border border-[var(--color-border)]">
+                    <h3 className="text-lg font-bold text-[var(--color-primary)] mb-3 flex items-center gap-2">
+                      <Crosshair className="w-5 h-5" /> Our Mission
+                    </h3>
+                    <p>Our mission is to become India's most trusted groundwater survey booking platform by connecting customers with verified groundwater experts through technology for informed and reliable borewell planning.</p>
+                  </div>
+                  <div className="bg-[var(--color-bg)] p-6 rounded-2xl border border-[var(--color-border)]">
+                    <h3 className="text-lg font-bold text-[var(--color-primary)] mb-3 flex items-center gap-2">
+                      <Activity className="w-5 h-5" /> Our Vision
+                    </h3>
+                    <p>Our vision is to revolutionize groundwater survey services by building a trusted nationwide network of verified and trained groundwater experts and empowering every borewell decision through scientific surveys and sustainable groundwater management.</p>
+                  </div>
+                </div>
+
+                {/* Why Jaladhaara */}
+                <div>
+                  <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Why Jaladhaara</h3>
+                  <p className="bg-blue-50/50 p-6 rounded-2xl">
+                    Jaladhaara is India's first dedicated groundwater survey booking platform, connecting customers with verified and trained groundwater experts through a transparent, technology driven, and seamless booking experience. We make scientific groundwater surveys more accessible, reliable and convenient for agricultural, residential, industrial and commercial projects.
+                  </p>
+                </div>
+
+                {/* Key Highlights */}
+                <div>
+                  <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-4">Key highlights</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {[
+                      'Verified groundwater survey experts',
+                      'Scientific survey methods',
+                      'Easy online booking',
+                      'Transparent pricing',
+                      'Secure digital payments',
+                      'Digital survey reports',
+                      'Pan india expert network',
+                      'Dedicated customer support'
+                    ].map((highlight, index) => (
+                      <div key={index} className="flex items-center gap-3 bg-gray-50 p-3 rounded-xl">
+                        <CheckCircle className="w-5 h-5 text-[var(--color-primary)] shrink-0" />
+                        <span className="font-medium text-[var(--color-text-primary)]">{index + 1}. {highlight}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Founder History */}
+                <div>
+                  <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Founder history</h3>
+                  <p className="leading-[1.8]">
+                    Jaladhaara was founded by Bommala Anjaiah, a postgraduate in Geophysics, with a vision to transform how groundwater survey services are accessed in India. Through years of observing the challenges faced by farmers, homeowners, industries, and groundwater professionals, he recognized the need for a transparent, technology-driven platform that connects customers with verified groundwater survey experts. This vision led to the creation of Jaladhaara—India's first dedicated groundwater survey booking platform, committed to making scientific borewell surveys more accessible, reliable, and trustworthy.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Terms & Conditions Modal */}
+      {isTermsModalOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-fade-in"
+          onClick={() => setIsTermsModalOpen(false)}
+        >
+          <div 
+            className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col animate-fade-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between p-6 sm:p-8 border-b border-gray-100 bg-gray-50/50">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--color-text-primary)]">Terms & Conditions</h2>
+              <button 
+                onClick={() => setIsTermsModalOpen(false)}
+                className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-800 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div 
+              className="p-6 sm:p-8 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+              data-lenis-prevent="true"
+            >
+              <div className="space-y-6 text-[var(--color-text-secondary)] leading-relaxed text-sm sm:text-base">
+                <p><strong>Effective Date:</strong> July 22, 2026</p>
+                <p>Welcome to Jaladhaara Groundwater Survey Pvt. Ltd. ("Jaladhaara", "we", "our", or "us"). These Terms & Conditions govern your access to and use of the Jaladhaara website and mobile applications. By accessing or using our platform, you agree to comply with and be bound by these Terms & Conditions.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">1. About Jaladhaara</h3>
+                <p>Jaladhaara is India's dedicated groundwater survey booking platform that connects customers with verified groundwater survey experts. Jaladhaara facilitates service bookings, communication, and digital payments through its platform. Unless expressly stated, Jaladhaara does not directly perform groundwater surveys or borewell drilling services.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">2. User Eligibility</h3>
+                <p>You must be legally eligible to enter into a binding agreement under applicable laws to use our platform and services.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">3. Booking Services</h3>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Customers can book groundwater survey services through the Jaladhaara platform.</li>
+                  <li>All bookings are subject to expert availability and service area coverage.</li>
+                  <li>Booking confirmation is provided only after successful payment and confirmation through the platform.</li>
+                </ul>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">4. Expert Verification</h3>
+                <p>Jaladhaara verifies experts based on the documents and information submitted during the onboarding process. Verification is intended to improve trust and transparency; however, it should not be interpreted as a guarantee of the outcome of any survey or service.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">5. Payments</h3>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Payments must be made using the payment methods available on the Jaladhaara platform.</li>
+                  <li>Applicable charges, taxes, and service fees will be displayed before booking confirmation.</li>
+                  <li>Refunds, cancellations, and rescheduling are governed by Jaladhaara's Refund and Cancellation Policy.</li>
+                </ul>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">6. User Responsibilities</h3>
+                <p>Users agree to:</p>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Provide accurate and complete booking information.</li>
+                  <li>Provide the correct survey location and contact details.</li>
+                  <li>Cooperate with the assigned expert during the survey.</li>
+                  <li>Make payments as required.</li>
+                  <li>Use the platform lawfully and responsibly.</li>
+                </ul>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">7. Expert Responsibilities</h3>
+                <p>Experts using the platform agree to:</p>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Provide professional groundwater survey services.</li>
+                  <li>Maintain accurate profile information.</li>
+                  <li>Follow applicable laws, professional standards, and ethical practices.</li>
+                  <li>Submit survey reports through the Jaladhaara platform where applicable.</li>
+                </ul>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">8. No Guarantee of Groundwater or Borewell Success</h3>
+                <p>Groundwater availability depends on natural geological conditions that cannot be predicted with absolute certainty.</p>
+                <p>Jaladhaara and its verified experts use scientific groundwater survey methods to assist in identifying suitable borewell locations. However, Jaladhaara does not guarantee groundwater availability, borewell success, drilling outcomes, water yield, or water quality. Final drilling decisions remain the responsibility of the customer.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">9. Platform Availability</h3>
+                <p>We strive to provide uninterrupted access to our website and mobile applications. However, Jaladhaara does not guarantee continuous availability and may temporarily suspend services for maintenance, upgrades, or technical reasons.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">10. Limitation of Liability</h3>
+                <p>To the maximum extent permitted by law, Jaladhaara shall not be liable for:</p>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Groundwater availability or borewell yield.</li>
+                  <li>Borewell drilling success or failure.</li>
+                  <li>Geological or environmental conditions.</li>
+                  <li>Decisions made by customers based on survey reports.</li>
+                  <li>Services provided by third-party drilling contractors.</li>
+                  <li>Delays caused by weather, natural events, or circumstances beyond our reasonable control.</li>
+                </ul>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">11. Intellectual Property</h3>
+                <p>All content, trademarks, logos, graphics, software, and other materials available on the Jaladhaara website and mobile applications are the property of Jaladhaara Groundwater Survey Pvt. Ltd. or their respective owners and are protected by applicable intellectual property laws.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">12. Suspension or Termination</h3>
+                <p>Jaladhaara reserves the right to suspend or terminate any user or expert account that violates these Terms & Conditions, engages in fraudulent activities, or misuses the platform.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">13. Force Majeure</h3>
+                <p>Jaladhaara shall not be held responsible for any delay or failure in providing services due to events beyond its reasonable control, including natural disasters, government actions, strikes, communication failures, pandemics, or other unforeseen circumstances.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">14. Changes to These Terms</h3>
+                <p>Jaladhaara may update these Terms & Conditions from time to time. Any changes will be published on this page with the updated effective date. Continued use of the platform after such updates constitutes acceptance of the revised Terms.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">15. Governing Law</h3>
+                <p>These Terms & Conditions shall be governed by the laws of India. Any disputes arising from the use of the Jaladhaara platform shall be subject to the exclusive jurisdiction of the competent courts in Hyderabad, Telangana.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">16. Contact Us</h3>
+                <p>Jaladhaara Groundwater Survey Pvt. Ltd.<br/>
+                Email: jaladhaarapvtltd@gmail.com<br/>
+                Website: www.jaladhaaraapp.in</p>
+                <p>For any questions regarding these Terms & Conditions, please contact us using the details above.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Privacy Policy Modal */}
+      {isPrivacyModalOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-fade-in"
+          onClick={() => setIsPrivacyModalOpen(false)}
+        >
+          <div 
+            className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col animate-fade-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between p-6 sm:p-8 border-b border-gray-100 bg-gray-50/50">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--color-text-primary)]">Privacy Policy</h2>
+              <button 
+                onClick={() => setIsPrivacyModalOpen(false)}
+                className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-800 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div 
+              className="p-6 sm:p-8 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+              data-lenis-prevent="true"
+            >
+              <div className="space-y-6 text-[var(--color-text-secondary)] leading-relaxed text-sm sm:text-base">
+                <p><strong>Effective Date:</strong> July 22, 2026</p>
+                <p>At Jaladhaara Groundwater Survey Pvt. Ltd. ("Jaladhaara", "we", "our", or "us"), we respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, and protect your information when you use our website and mobile applications.</p>
+                <p>By accessing or using the Jaladhaara platform, you agree to the practices described in this Privacy Policy.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">1. Information We Collect</h3>
+                <p>We may collect the following information:</p>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Name</li>
+                  <li>Mobile number</li>
+                  <li>Email address</li>
+                  <li>Address and survey location</li>
+                  <li>Booking and transaction details</li>
+                  <li>Payment information (processed securely through authorized payment service providers)</li>
+                  <li>Device information, IP address, and browser details</li>
+                  <li>Information shared while contacting customer support</li>
+                  <li>Information submitted by experts during registration and verification</li>
+                </ul>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">2. How We Use Your Information</h3>
+                <p>Your information is used to:</p>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Process groundwater survey bookings</li>
+                  <li>Connect customers with verified groundwater survey experts</li>
+                  <li>Verify expert registrations and profiles</li>
+                  <li>Facilitate secure payments and booking confirmations</li>
+                  <li>Provide customer support and service updates</li>
+                  <li>Improve our website, mobile applications, and user experience</li>
+                  <li>Prevent fraud, misuse, and unauthorized activities</li>
+                  <li>Comply with applicable legal and regulatory requirements</li>
+                </ul>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">3. Information Sharing</h3>
+                <p>Jaladhaara does not sell, rent, or trade your personal information.</p>
+                <p>Your information may be shared only with:</p>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Verified groundwater survey experts assigned to your booking</li>
+                  <li>Trusted technology, communication, and payment service providers</li>
+                  <li>Government authorities or regulatory agencies when required by applicable law</li>
+                </ul>
+                <p>All third-party service providers are expected to handle your information responsibly and in accordance with applicable laws.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">4. Data Security</h3>
+                <p>We implement reasonable technical, administrative, and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+                <p>While we strive to safeguard your information, no method of electronic transmission or storage is completely secure. Therefore, absolute security cannot be guaranteed.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">5. Cookies and Analytics</h3>
+                <p>Our website may use cookies and similar technologies to enhance your browsing experience, analyze website performance, and improve our services.</p>
+                <p>You may manage or disable cookies through your browser settings. However, some website features may not function properly if cookies are disabled.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">6. Third-Party Services</h3>
+                <p>Our platform may contain links to third-party websites or services. Jaladhaara is not responsible for the privacy practices, policies, or content of those third-party platforms. Users are encouraged to review their respective privacy policies.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">7. Your Rights</h3>
+                <p>Subject to applicable law, you may request to:</p>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Access your personal information</li>
+                  <li>Update or correct inaccurate information</li>
+                  <li>Request deletion of your personal information where legally permitted</li>
+                  <li>Withdraw consent where applicable</li>
+                </ul>
+                <p>Requests may be subject to legal, contractual, or operational requirements.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">8. Children's Privacy</h3>
+                <p>Jaladhaara's services are intended for individuals who are legally eligible to use our platform. We do not knowingly collect personal information from children.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">9. Changes to This Privacy Policy</h3>
+                <p>We may update this Privacy Policy from time to time to reflect changes in our services or legal requirements. The updated version will be published on this page with a revised Effective Date.</p>
+
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mt-6 mb-2">10. Contact Us</h3>
+                <p>If you have any questions regarding this Privacy Policy or the handling of your personal information, please contact us:</p>
+                <p>Jaladhaara Groundwater Survey Pvt. Ltd.<br/>
+                Email: jaladhaarapvtltd@gmail.com<br/>
+                Website: www.jaladhaaraapp.in</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

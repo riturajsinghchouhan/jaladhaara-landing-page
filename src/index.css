@@ -175,3 +175,8 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Scroll Reveal Animations */
+.reveal {
+  opacity: 0;
+}
