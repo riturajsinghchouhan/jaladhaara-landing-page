@@ -123,10 +123,46 @@ function FaqItem({ faq, isOpen, onClick }) {
   );
 }
 
+const reviewsData = [
+  {
+    text: "The booking process was simple, and the expert conducted a professional groundwater survey. The digital report was very helpful before drilling our borewell.",
+    name: "Customer",
+    role: ""
+  },
+  {
+    text: "Jaladhaara made it easy to find a verified groundwater survey expert. The entire experience was smooth and transparent.",
+    name: "Customer",
+    role: ""
+  },
+  {
+    text: "Jaladhaara helps me receive genuine survey requests, manage my bookings efficiently, and connect with more customers through one platform.",
+    name: "Verified Groundwater Survey Expert",
+    role: ""
+  },
+  {
+    text: "The app simplifies my field operations with digital booking management and report submission, allowing me to focus on delivering quality surveys.",
+    name: "Verified Groundwater Survey Expert",
+    role: ""
+  },
+  {
+    text: "As a professional, Jaladhaara has completely transformed how I get survey requests. It's seamless and highly reliable!",
+    name: "Vikram Singh",
+    role: "Senior Geologist, Indore"
+  }
+];
+
 function App() {
   const appsScrollRef = useRef(null);
+  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentReviewIndex((prev) => (prev + 1) % reviewsData.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
 
@@ -643,16 +679,20 @@ function App() {
               <Droplets className="w-20 h-20 lg:w-32 lg:h-32 text-[var(--color-primary)] opacity-50 hidden lg:block" />
 
               {/* Floating Expert Testimonial */}
-              <div className="relative lg:absolute lg:-left-32 lg:-top-16 glass-panel p-5 rounded-2xl w-full max-w-[300px] lg:max-w-[280px] animate-float-slow z-20 mx-auto shadow-2xl">
-                <div className="flex gap-1 mb-2">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-[var(--color-primary)] text-[var(--color-primary)]" />)}
-                </div>
-                <p className="text-xs sm:text-sm text-[var(--color-text-primary)]/90 font-medium mb-3 sm:mb-4 leading-snug">"As a professional, Jaladhaara has completely transformed how I get survey requests. It's seamless and highly reliable!"</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gray-500"></div>
-                  <div>
-                    <div className="text-xs sm:text-sm font-bold leading-none">Vikram Singh</div>
-                    <div className="text-[10px] sm:text-[11px] text-[var(--color-text-secondary)] mt-1">Senior Geologist, Indore</div>
+              <div className="relative lg:absolute lg:-left-32 lg:-top-16 glass-panel p-5 rounded-2xl w-full max-w-[300px] lg:max-w-[280px] animate-float-slow z-20 mx-auto shadow-2xl overflow-hidden min-h-[160px] flex flex-col justify-center">
+                <div key={currentReviewIndex} className="animate-fade-in">
+                  <div className="flex gap-1 mb-2">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-[var(--color-primary)] text-[var(--color-primary)]" />)}
+                  </div>
+                  <p className="text-xs sm:text-sm text-[var(--color-text-primary)]/90 font-medium mb-3 sm:mb-4 leading-snug">"{reviewsData[currentReviewIndex].text}"</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-[var(--color-primary)] shrink-0 flex items-center justify-center text-white font-bold text-xs uppercase">{reviewsData[currentReviewIndex].name.substring(0, 2)}</div>
+                    <div>
+                      <div className="text-xs sm:text-sm font-bold leading-none">{reviewsData[currentReviewIndex].name}</div>
+                      {reviewsData[currentReviewIndex].role && (
+                        <div className="text-[10px] sm:text-[11px] text-[var(--color-text-secondary)] mt-1">{reviewsData[currentReviewIndex].role}</div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
