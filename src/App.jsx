@@ -590,9 +590,7 @@ function App() {
             <div className="absolute top-0 right-0 w-32 h-32 sm:w-64 sm:h-64 bg-white/10 rounded-full blur-[40px] sm:blur-[80px] pointer-events-none"></div>
 
             <div>
-              <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/20 flex items-center justify-center mb-3 sm:mb-8 border border-white/30 shadow-lg group-hover:scale-110 transition-transform backdrop-blur-md">
-                <Droplets className="w-5 h-5 sm:w-8 sm:h-8 text-white" />
-              </div>
+              <div className="mb-3 sm:mb-8 h-10 sm:h-16" />
               <h3 className="text-xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-4 text-white leading-tight">Jaladhaara</h3>
               <p className="text-white/80 text-xs sm:text-base lg:text-lg leading-relaxed mb-5 sm:mb-10 max-w-md">Find and book verified groundwater survey experts near  you for agricultural,  residential, industrial and commercial needs.</p>
             </div>
@@ -620,9 +618,7 @@ function App() {
             <div className="absolute bottom-0 left-0 w-32 h-32 sm:w-64 sm:h-64 bg-white/10 rounded-full blur-[40px] sm:blur-[80px] pointer-events-none"></div>
 
             <div>
-              <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/20 flex items-center justify-center mb-3 sm:mb-8 border border-white/30 shadow-lg group-hover:scale-110 transition-transform backdrop-blur-md">
-                <Crosshair className="w-5 h-5 sm:w-8 sm:h-8 text-white" />
-              </div>
+              <div className="mb-3 sm:mb-8 h-10 sm:h-16" />
               <h3 className="text-xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-4 text-white leading-tight">Jaladhaara <span className="text-[#90E0EF] block sm:inline">Expert</span></h3>
               <p className="text-white/80 text-xs sm:text-base lg:text-lg leading-relaxed mb-5 sm:mb-10 max-w-md">A dedicated app for verified groundwater experts to manage bookings, conduct surveys, submit digital reports with ease and build trusted professional profile</p>
             </div>
